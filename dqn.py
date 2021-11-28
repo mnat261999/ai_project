@@ -15,14 +15,14 @@ class Dqn():
     #Getting batches of inputs and targets
     def getBatch(self, model, batchSize):
         lenMemory = len(self.memory)
-        numOutputs = model.out_shape[-1]
+        numOutputs = model.output_shape[-1]
         
         #Initializing the inputs and targets
         inputs = np.zeros((min(batchSize, lenMemory),self.memory[0][0][0].shape[1],self.memory[0][0][0].shape[2],self.memory[0][0][0].shape[3]))
         targets = np.zeros((min(batchSize, lenMemory), numOutputs))
         
         #Extracting transitions from random experinece
-        for i, inx in enumerate(np.random.randint(0, lenMemory, size = min(batchSize, lenMemory)));:
+        for i, inx in enumerate(np.random.randint(0, lenMemory, size = min(batchSize, lenMemory))):
             currentState, action, reward, nextState = self.memory[inx][0]
             gameOver = self.memory[inx][1]
             

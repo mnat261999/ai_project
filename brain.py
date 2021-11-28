@@ -22,7 +22,7 @@ class Brain():
         
         self.model.add(Flatten())
         
-        self.model.add(Dense(256, activation= 'relu)
+        self.model.add(Dense(256, activation = 'relu'))
          
         self.model.add(Dense(self.numOutput))
         
@@ -30,6 +30,6 @@ class Brain():
         
         #Building a method that will load a model
         
-        def loadModel(self, filepath):
-            self.model = load_model(filepath)
-            return self.model 
+    def loadModel(self, filepath):
+        self.model = load_model(filepath)
+        return self.model 
