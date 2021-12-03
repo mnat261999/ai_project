@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jul  4 11:31:56 2019
+
+@author: janwa
+"""
+
 import numpy as np
 import pygame as pg
 
@@ -65,7 +72,7 @@ class Environment():
       
     def moveSnake(self, nextPos, col):
         
-        col = True
+        #col = True
         
         self.snakePos.insert(0, nextPos)
         

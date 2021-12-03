@@ -4,7 +4,7 @@ import numpy as np
 
 waitTime = 75
 nLastStates = 4
-filepathToOpen = 'model.h5'
+filepathToOpen = 'model2.h5'
 
 env = Environment(waitTime)
 brain = Brain((env.nColumns, env.nRows, nLastStates))

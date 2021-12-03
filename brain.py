@@ -1,35 +1,40 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jul  4 12:47:39 2019
+
+@author: janwa
+"""
+
+
 import keras
 from keras.models import Sequential, load_model
-from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+from keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten
 from keras.optimizers import Adam
 
 
 class Brain():
-    def __init__(self, inputShape, lr = 0.005):
-        self.inputShape = inputShape
+    
+    def __init__(self, iS = (100,100,3), lr = 0.0005):
         self.learningRate = lr
-        self.numOutput = 4
-        
-        
-        #Creating the neural network
-        self.model = Sequential()
+        self.inputShape = iS
+        self.numOutputs = 4
+        self.model = Sequential() 
         
         self.model.add(Conv2D(32, (3,3), activation = 'relu', input_shape = self.inputShape))
         
-        self.model.add(MaxPooling2D((2, 2)))
+        self.model.add(MaxPooling2D((2,2)))
         
-        self.model.add(Conv2D(64, (2, 2), activation = 'relu'))
+        self.model.add(Conv2D(64, (2,2), activation = 'relu'))
         
         self.model.add(Flatten())
         
-        self.model.add(Dense(256, activation = 'relu'))
-         
-        self.model.add(Dense(self.numOutput))
+        self.model.add(Dense(units = 256, activation = 'relu'))
         
-        self.model.compile(optimizer= Adam(lr = self.learningRate), loss= 'mean_squared_error')
+        self.model.add(Dense(units = self.numOutputs))
         
-        #Building a method that will load a model
+        self.model.compile(loss = 'mean_squared_error', optimizer = Adam(lr = self.learningRate))
         
+
     def loadModel(self, filepath):
         self.model = load_model(filepath)
         return self.model 
